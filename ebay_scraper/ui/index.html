@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PokéPrice — eBay Card Scraper</title>
+  <meta name="description"
+    content="Search eBay for Pokemon card prices. Get min, max, and average prices for graded cards instantly." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/ui/style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════ SEARCH STATE ═══════════════════ -->
+  <div id="state-search" class="state active">
+    <div class="hero">
+      <div class="logo-wrap">
+        <span class="logo-icon">◈</span>
+        <h1 class="logo-text">PokéPrice</h1>
+        <p class="logo-sub">Real-time eBay market data for graded Pokémon cards</p>
+      </div>
+
+      <form id="search-form" class="search-wrap" autocomplete="off">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input id="search-input" type="text" class="search-input" placeholder="e.g. Charizard Base Set PSA 10"
+            autofocus />
+          <button type="submit" class="search-btn">Search</button>
+        </div>
+        <p class="search-hint">Include grade (PSA 10, CGC 9.5), set name, or keywords like 1st Edition</p>
+      </form>
+
+      <div class="example-chips">
+        <span class="chip-label">Try:</span>
+        <button class="chip" onclick="setQuery('Charizard Base Set PSA 10')">Charizard Base Set PSA 10</button>
+        <button class="chip" onclick="setQuery('Pikachu Illustrator CGC 9')">Pikachu Illustrator CGC 9</button>
+        <button class="chip" onclick="setQuery('Blastoise 1st Edition BGS 9.5')">Blastoise 1st Edition BGS 9.5</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ LOADING STATE ════════════════════ -->
+  <div id="state-loading" class="state">
+    <div class="loading-wrap">
+      <div class="spinner"></div>
+      <p id="loading-text" class="loading-text">Searching eBay…</p>
+      <p id="loading-sub" class="loading-sub">Opening the browser and fetching results</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ PREVIEW STATE ══════════════════ -->
+  <div id="state-preview" class="state">
+    <div class="page-wrap">
+
+      <header class="page-header">
+        <button class="back-btn" onclick="goHome()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          New Search
+        </button>
+        <div>
+          <h2 id="preview-title" class="page-title"></h2>
+          <p class="page-sub">Are these the listings you're looking for?</p>
+        </div>
+      </header>
+
+      <div id="preview-list" class="preview-list"></div>
+
+      <div class="confirm-bar">
+        <div class="pages-wrap">
+          <span class="pages-label">📄 Pages to scrape</span>
+          <span class="auto-pages-badge">Auto — all available</span>
+          <span class="pages-hint">eBay pagination detected automatically</span>
+        </div>
+        <button id="confirm-btn" class="cta-btn" onclick="confirmScrape()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22,4 12,14.01 9,11.01" />
+          </svg>
+          Scrape All Pages
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ RESULTS STATE ══════════════════ -->
+  <div id="state-results" class="state">
+    <div class="page-wrap">
+
+      <header class="page-header">
+        <button class="back-btn" onclick="goHome()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          New Search
+        </button>
+        <div>
+          <h2 id="results-title" class="page-title"></h2>
+          <p id="results-sub" class="page-sub"></p>
+        </div>
+        <button id="download-btn" class="download-btn" onclick="downloadCSV()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7,10 12,15 17,10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Export CSV
+        </button>
+      </header>
+
+      <!-- Stats panel -->
+      <div class="stats-panel">
+        <div class="stat-card stat-low">
+          <span class="stat-label">Lowest</span>
+          <span id="stat-min" class="stat-value">—</span>
+        </div>
+        <div class="stat-card stat-avg">
+          <span class="stat-label">Average</span>
+          <span id="stat-avg" class="stat-value">—</span>
+        </div>
+        <div class="stat-card stat-high">
+          <span class="stat-label">Highest</span>
+          <span id="stat-max" class="stat-value">—</span>
+        </div>
+        <div class="stat-card stat-count">
+          <span class="stat-label">Matched</span>
+          <span id="stat-count" class="stat-value">—</span>
+        </div>
+      </div>
+
+      <!-- Filter tags -->
+      <div id="filter-tags" class="filter-tags"></div>
+
+      <!-- Price Timeline Chart -->
+      <div class="chart-panel" style="display: none;" id="chart-wrap">
+        <canvas id="price-chart"></canvas>
+      </div>
+
+      <!-- Full table -->
+      <div class="table-wrap">
+        <table class="results-table">
+          <thead id="results-head">
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Grade</th>
+              <th>Price</th>
+              <th>Check</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody id="results-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Cross-check: rejected items panel -->
+      <div id="rejected-panel"></div>
+
+    </div>
+  </div>
+
+  <script src="/ui/app.js"></script>
+</body>
+
+</html>

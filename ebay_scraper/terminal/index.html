@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PokéTerminal — Bloomberg-style Card Tracker</title>
+  <meta name="description" content="Real-time Pokémon card price terminal tracking 10 rare cards on eBay." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="/terminal/terminal.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════ TICKER BAR ═══════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-label">LIVE</div>
+  <div class="ticker-track" id="ticker-track">
+    <div class="ticker-inner" id="ticker-inner">
+      <span class="ticker-placeholder">Loading market data…</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ MAIN LAYOUT ══════════════════════ -->
+<div class="terminal-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-mark">◈</span>
+      <div>
+        <div class="logo-name">PokéTerminal</div>
+        <div class="logo-sub">Market Intelligence</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="/terminal/" class="nav-item active" id="nav-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a href="/ui/" class="nav-item" id="nav-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Manual Search
+      </a>
+    </nav>
+
+    <div class="sidebar-status" id="sidebar-status">
+      <div class="status-dot"></div>
+      <div>
+        <div class="status-label">Last Update</div>
+        <div class="status-time" id="status-time">—</div>
+      </div>
+    </div>
+
+    <button class="refresh-btn" id="refresh-btn" onclick="triggerRefresh()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      Refresh All
+    </button>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+
+    <!-- Header -->
+    <header class="content-header">
+      <div>
+        <h1 class="content-title">Market Dashboard</h1>
+        <p class="content-sub">10 cards tracked · eBay sold listings · updates every 30 min</p>
+      </div>
+      <div class="header-meta" id="header-meta">
+        <div class="meta-chip" id="next-run-chip">Next run: —</div>
+      </div>
+    </header>
+
+    <!-- Summary stat strip -->
+    <div class="summary-strip" id="summary-strip">
+      <div class="summary-chip">
+        <span class="sc-label">Cards Tracked</span>
+        <span class="sc-value" id="sum-cards">—</span>
+      </div>
+      <div class="summary-chip">
+        <span class="sc-label">Total Listings</span>
+        <span class="sc-value" id="sum-listings">—</span>
+      </div>
+      <div class="summary-chip">
+        <span class="sc-label">7d Volume</span>
+        <span class="sc-value" id="sum-volume">—</span>
+      </div>
+      <div class="summary-chip">
+        <span class="sc-label">Highest Price</span>
+        <span class="sc-value" id="sum-highest">—</span>
+      </div>
+    </div>
+
+    <!-- Card table -->
+    <div class="table-shell">
+      <table class="bloomberg-table" id="card-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>CARD</th>
+            <th class="num">LAST SALE</th>
+            <th class="num">24H HIGH</th>
+            <th class="num">24H LOW</th>
+            <th class="num">AVG 30D</th>
+            <th class="num">VOLATILITY</th>
+            <th class="num">VOL 7D</th>
+            <th class="num">POP</th>
+            <th class="num">TREND</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="card-tbody">
+          <tr><td colspan="11" class="loading-row">
+            <div class="spinner"></div> Fetching market data…
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="terminal-footer">
+      Data sourced from eBay sold listings · Not financial advice · Prices in USD
+    </footer>
+
+  </main>
+</div>
+
+<script src="/terminal/terminal.js"></script>
+</body>
+</html>

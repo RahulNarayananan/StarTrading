@@ -1,0 +1,4 @@
+C:\Users\rahul\desktop\Analyticsfounder\ebay_scraper\server.py:14: DeprecationWarning: 'asyncio.WindowsProactorEventLoopPolicy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+C:\Users\rahul\desktop\Analyticsfounder\ebay_scraper\server.py:14: DeprecationWarning: 'asyncio.set_event_loop_policy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())

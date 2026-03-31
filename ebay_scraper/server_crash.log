@@ -1,0 +1,25 @@
+﻿py : C:\Users\rahul\Desktop\Analyticsfounder\
+ebay_scraper\server.py:14: 
+DeprecationWarning: 
+'asyncio.WindowsProactorEventLoopPolicy' is 
+deprecated and slated for removal in Python 
+3.16
+At line:1 char:1
++ py server.py 2>&1 | Out-File -Encoding 
+utf8 server_crash.log
++ ~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified:  
+   (C:\Users\rahul\... in Python 3.16:Strin  
+  g) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandE 
+   rror
+ 
+  asyncio.set_event_loop_policy(asyncio.Windo
+wsProactorEventLoopPolicy())
+C:\Users\rahul\Desktop\Analyticsfounder\ebay_
+scraper\server.py:14: DeprecationWarning: 
+'asyncio.set_event_loop_policy' is 
+deprecated and slated for removal in Python 
+3.16
+  asyncio.set_event_loop_policy(asyncio.Windo
+wsProactorEventLoopPolicy())

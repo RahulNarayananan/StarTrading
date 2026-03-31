@@ -1,0 +1,163 @@
+[
+  {
+    "group_id": 23237,
+    "group_name": "SV: Scarlet & Violet 151",
+    "product_id": 502558,
+    "name": "Charizard ex - 006/165",
+    "market_price": 10.15
+  },
+  {
+    "group_id": 23237,
+    "group_name": "SV: Scarlet & Violet 151",
+    "product_id": 517017,
+    "name": "Charizard ex - 183/165",
+    "market_price": 51.01
+  },
+  {
+    "group_id": 23237,
+    "group_name": "SV: Scarlet & Violet 151",
+    "product_id": 517045,
+    "name": "Charizard ex - 199/165",
+    "market_price": 434.83
+  },
+  {
+    "group_id": 22872,
+    "group_name": "SV: Scarlet & Violet Promo Cards",
+    "product_id": 518861,
+    "name": "Pikachu with Grey Felt Hat",
+    "market_price": 776.41
+  },
+  {
+    "group_id": 22872,
+    "group_name": "SV: Scarlet & Violet Promo Cards",
+    "product_id": 521697,
+    "name": "Charizard ex - 056",
+    "market_price": 15.95
+  },
+  {
+    "group_id": 22872,
+    "group_name": "SV: Scarlet & Violet Promo Cards",
+    "product_id": 538687,
+    "name": "Charizard ex - 074",
+    "market_price": 25.57
+  },
+  {
+    "group_id": 22872,
+    "group_name": "SV: Scarlet & Violet Promo Cards",
+    "product_id": 586831,
+    "name": "Charizard ex - 161",
+    "market_price": 5.88
+  },
+  {
+    "group_id": 22872,
+    "group_name": "SV: Scarlet & Violet Promo Cards",
+    "product_id": 641610,
+    "name": "Charizard ex -196",
+    "market_price": 3.94
+  },
+  {
+    "group_id": 3170,
+    "group_name": "SWSH12: Silver Tempest",
+    "product_id": 451396,
+    "name": "Lugia VSTAR",
+    "market_price": 4.45
+  },
+  {
+    "group_id": 3170,
+    "group_name": "SWSH12: Silver Tempest",
+    "product_id": 451995,
+    "name": "Lugia VSTAR (Secret) (202)",
+    "market_price": 35.21
+  },
+  {
+    "group_id": 3170,
+    "group_name": "SWSH12: Silver Tempest",
+    "product_id": 452009,
+    "name": "Lugia VSTAR (Secret) (211)",
+    "market_price": 21.05
+  },
+  {
+    "group_id": 17674,
+    "group_name": "SWSH12: Silver Tempest Trainer Gallery",
+    "product_id": 452034,
+    "name": "Rayquaza VMAX",
+    "market_price": 111.49
+  },
+  {
+    "group_id": 17674,
+    "group_name": "SWSH12: Silver Tempest Trainer Gallery",
+    "product_id": 452048,
+    "name": "Rayquaza VMAX (Secret)",
+    "market_price": 19.48
+  },
+  {
+    "group_id": 3020,
+    "group_name": "SWSH09: Brilliant Stars Trainer Gallery",
+    "product_id": 264206,
+    "name": "Umbreon VMAX",
+    "market_price": 84.03
+  },
+  {
+    "group_id": 2848,
+    "group_name": "SWSH07: Evolving Skies",
+    "product_id": 246720,
+    "name": "Umbreon VMAX",
+    "market_price": 24.39
+  },
+  {
+    "group_id": 2848,
+    "group_name": "SWSH07: Evolving Skies",
+    "product_id": 246722,
+    "name": "Umbreon VMAX (Secret)",
+    "market_price": 61.4
+  },
+  {
+    "group_id": 2848,
+    "group_name": "SWSH07: Evolving Skies",
+    "product_id": 246723,
+    "name": "Umbreon VMAX (Alternate Art Secret)",
+    "market_price": 1822.24
+  },
+  {
+    "group_id": 2848,
+    "group_name": "SWSH07: Evolving Skies",
+    "product_id": 246730,
+    "name": "Rayquaza VMAX",
+    "market_price": 9.02
+  },
+  {
+    "group_id": 2848,
+    "group_name": "SWSH07: Evolving Skies",
+    "product_id": 246731,
+    "name": "Rayquaza VMAX (Secret)",
+    "market_price": 74.36
+  },
+  {
+    "group_id": 2848,
+    "group_name": "SWSH07: Evolving Skies",
+    "product_id": 246733,
+    "name": "Rayquaza VMAX (Alternate Art Secret)",
+    "market_price": 706.85
+  },
+  {
+    "group_id": 1451,
+    "group_name": "XY Promos",
+    "product_id": 96379,
+    "name": "Charizard EX - XY17",
+    "market_price": 34.17
+  },
+  {
+    "group_id": 1451,
+    "group_name": "XY Promos",
+    "product_id": 96392,
+    "name": "Charizard EX - XY29",
+    "market_price": 17.87
+  },
+  {
+    "group_id": 1451,
+    "group_name": "XY Promos",
+    "product_id": 117267,
+    "name": "Charizard EX - XY121",
+    "market_price": 157.46
+  }
+]

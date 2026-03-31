@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\rahul\Desktop\Analyticsfounder\ebay_scraper\server.py", line 280, in tracker_card_detail
+    **card,
+        ^^^
+fastapi.exceptions.HTTPException: 404: Card not found

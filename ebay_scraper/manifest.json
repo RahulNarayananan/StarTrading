@@ -1,0 +1,127 @@
+{
+    "agent_id": "ebay_scraper",
+    "name": "eBay Card Price Scraper",
+    "version": "1.0.0",
+    "description": "Scrapes eBay for Pokemon card listings, extracts pricing data (min, max, mean), detects grades (PSA/CGC/BGS/SGC) and special attributes (1st Edition, Shadowless) from the query, and exports results to CSV.",
+    "entrypoint": "ebay_scraper.runner",
+    "trigger": "query_received",
+    "input_schema": {
+        "type": "object",
+        "required": [
+            "query"
+        ],
+        "properties": {
+            "query": {
+                "type": "string",
+                "description": "Search query exactly as typed by the user, e.g. 'Charizard Base Set PSA 10'"
+            },
+            "max_pages": {
+                "type": "integer",
+                "description": "Number of eBay result pages to scrape (60 items/page). Defaults to 1.",
+                "default": 1,
+                "minimum": 1,
+                "maximum": 10
+            },
+            "headless": {
+                "type": "boolean",
+                "description": "Run browser in headless mode. Defaults to true for server use.",
+                "default": true
+            }
+        }
+    },
+    "output_schema": {
+        "type": "object",
+        "properties": {
+            "status": {
+                "type": "string",
+                "enum": [
+                    "success",
+                    "error"
+                ],
+                "description": "Whether the scrape succeeded"
+            },
+            "query": {
+                "type": "string",
+                "description": "The original query"
+            },
+            "filters_detected": {
+                "type": "object",
+                "description": "Filters parsed from the query (grader, grade, keywords)"
+            },
+            "stats": {
+                "type": "object",
+                "description": "Price statistics for matched items",
+                "properties": {
+                    "min": {
+                        "type": "number"
+                    },
+                    "max": {
+                        "type": "number"
+                    },
+                    "mean": {
+                        "type": "number"
+                    },
+                    "count": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "items": {
+                "type": "array",
+                "description": "All matched items with title, price, grade info, and link",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "title": {
+                            "type": "string"
+                        },
+                        "price": {
+                            "type": "number"
+                        },
+                        "price_str": {
+                            "type": "string"
+                        },
+                        "grader": {
+                            "type": "string"
+                        },
+                        "grade": {
+                            "type": "string"
+                        },
+                        "keywords": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "card_number": {
+                            "type": "string"
+                        },
+                        "sponsored": {
+                            "type": "boolean"
+                        },
+                        "link": {
+                            "type": "string"
+                        },
+                        "image_url": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "csv_path": {
+                "type": "string",
+                "description": "Absolute path to the exported CSV file, if saved"
+            },
+            "error": {
+                "type": "string",
+                "description": "Error message if status is 'error'"
+            }
+        }
+    },
+    "capabilities": [
+        "web_scraping",
+        "price_analysis",
+        "pokemon_cards",
+        "ebay"
+    ]
+}
