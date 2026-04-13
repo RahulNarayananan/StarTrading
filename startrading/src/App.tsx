@@ -10,6 +10,7 @@ import Search from './pages/Search';
 import SearchResults from './pages/SearchResults';
 import CardInfo from './pages/CardInfo';
 import Vault from './pages/Vault';
+import Ledger from './pages/Ledger';
 import WeeklyReport from './pages/WeeklyReport';
 import Polymarket from './pages/Polymarket';
 import Events from './pages/Events';
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/search-results" element={<SearchResults />} />
           <Route path="/card/:id" element={<CardInfo />} />
           <Route path="/vault" element={<Vault />} />
+          <Route path="/ledger" element={<Ledger />} />
           <Route path="/weekly-report" element={<WeeklyReport />} />
           <Route path="/forecasts" element={<Polymarket />} />
           <Route path="/events" element={<Events />} />

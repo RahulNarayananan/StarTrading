@@ -25,6 +25,7 @@ export const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
   const menuItems = [
     { icon: Search, label: 'Search', path: '/' },
     { icon: Lock, label: 'StarVault', path: '/vault' },
+    { icon: LayoutGrid, label: 'Ledger', path: '/ledger' },
     { icon: TrendingUp, label: 'Forecasts', path: '/forecasts' },
     { icon: Calendar, label: 'Events', path: '/events' },
   ];

@@ -18,6 +18,7 @@ export default defineConfig(({mode}) => {
     server: {
       proxy: {
         '/tracker': 'http://localhost:8000',
+        '/search': 'http://localhost:8000',
       },
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
